@@ -49,20 +49,30 @@ class Arthropod extends Animal {
   }
 
   // this are the general properties of an athropod
+
+
   habitat = "Land and Water";
   diet = "Carnivore or Herbivore";
   skinType = "Exoskeleton";
+  temperature_Regulation=  "Cold Blooded"
 
   move() {
     console.log(`${this.name} is crawling.`);
   }
 
+
+  // this line of code describes polymorphism as you can see that every animal moves differently 
   eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
+  // encapsulated method property is private to each animal group 
+  #property() {
     console.table(this);
+  }
+
+  getProperties(){
+    this.#property()
   }
 }
 
@@ -71,21 +81,34 @@ class Fish extends Vertebrate {
   constructor() {
     super();
   }
+
+  // this are the general properties of a fish
+  
   habitat = "Water";
   diet = "Carnivore or Herbivore	";
   skinType = "Wet and Slimy";
   limbs = "0: Fishes have fins instead of limbs";
+  temperature_Regulation=  "Cold Blooded"
 
+
+  // this line of code describes polymorphism as you can see that every animal moves differently
   move() {
     console.log(`${this.name} is swimming.`);
   }
+
+
 
   eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
+  // encapsulated method property is private to each animal group 
+  #property() {
     console.table(this);
+  }
+
+  getProperties(){
+    this.#property()
   }
 }
 
@@ -95,33 +118,49 @@ class Amphibian extends Vertebrate {
     super();
     this.name = name;
   }
+
+  // this are the general properties of an amphibian
+ 
   habitat = "Wetland";
   diet = "Carnivore";
   skinType = "Moist and slimy";
   limbs = "2 - 4";
+  temperature_Regulation=  "Cold Blooded"
 
   move() {
     console.log(`${this.name} is crawling.`);
   }
 
+  // this line of code describes polymorphism as you can see that every animal moves differently
   eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
+  // encapsulated method property is private to each animal group 
+  #property() {
     console.table(this);
+  }
+
+  getProperties(){
+    this.#property()
   }
 }
 
 // Class for reptiles
 class Reptile extends Vertebrate {
   constructor(name) {
-    super(name);
+    super();
+    this.name = name;
   }
+
+
+  // this are the general properties of an reptile
+
   habitat = "Land and water";
   diet = "Carnivore";
   skinType = "Dry and scaly";
   limbs = "4";
+  temperature_Regulation=  "Cold Blooded"
 
   move() {
     console.log(`${this.name} is slithering.`);
@@ -131,9 +170,15 @@ class Reptile extends Vertebrate {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
-    console.table(this);
-  }
+ // encapsulated method property is private to each animal group 
+ #property() {
+  console.table(this);
+}
+
+getProperties(){
+  this.#property()
+}
+
 }
 
 // Class for mammals
@@ -143,10 +188,14 @@ class Mammal extends Vertebrate {
     this.name = name;
   }
 
+
+  // this are the general properties of a mammal
+ 
   habitat = "Land";
   diet = "Carnivore, Herbivore, Omnivore";
   skinType = "Fur or hair";
   limbs = "4";
+  temperature_Regulation=  "Warm Blooded"
 
   move() {
     console.log(`${this.name} is running.`);
@@ -156,8 +205,13 @@ class Mammal extends Vertebrate {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
+  // encapsulated method property is private to each animal group 
+  #property() {
     console.table(this);
+  }
+
+  getProperties(){
+    this.#property()
   }
 }
 
@@ -168,10 +222,14 @@ class Aves extends Vertebrate {
     this.name = name;
   }
 
+  // this are the general properties of a bird
+  
   habitat = "Land and Air";
   diet = "Carnivore or Herbivore";
   skinType = "Feathers";
   limbs = "2";
+
+  temperature_Regulation=  "Warm Blooded"
 
   move() {
     console.log(`${this.name} is flying.`);
@@ -181,14 +239,20 @@ class Aves extends Vertebrate {
     console.log(`${this.name} is eating.`);
   }
 
-  allProperties() {
+// encapsulated method property is private to each animal group 
+  #property() {
     console.table(this);
+  }
+
+  // using this metgod to access encapsulated methods
+  getProperties(){
+    this.#property()
   }
 }
 
 // Create some instances of these classes and test their behavior
 
-const butterfly = new Arthropod("Butterfly", 6);
+const butterfly = new Arthropod("Butterfly");
 
 const goldfish = new Fish("Goldfish");
 
@@ -199,40 +263,7 @@ const tortoise = new Reptile("Tortoise");
 const eagle = new Aves("Eagle");
 
 const cat = new Mammal("Cat");
-/*
-// Abstraction: the Animal base class provides a common interface for the derived classes, 
-// allowing us to interact with them in a uniform way.
 
-// Inheritance: the derived classes inherit the properties and methods of the base class,
-// allowing them to reuse common functionality.
+console.log(eagle.getProperties());
+console.log(eagle.property()); // this would trow an error as the property is encapsulated
 
-// Polymorphism: the derived classes can override the base class methods to provide 
-// unique behavior, allowing them to share a common interface but behave differently.
-
-// Encapsulation: the properties and methods of each class are encapsulated within 
-// the class itself, providing a clear separation of responsibilities and a high degree 
-// of modularity.
-
-// Test the behavior of the objects
-// frog.move();    // Output: "Frog is crawling."
-
-
-/*
-
-console.log(frog.color);    // Output: "green"
-console.log(snake.length);  // Output: 6
-console.log(goldfish.weight);   // Output: 0.5
-console.log(dog.fur);    // Output: "brown"
-console.log(eagle.wingspan);  // Output: 2
-console.log(spider.legs); // Output: 8
-*/
-
-/*
-Animal	    Habitat	         Diet	                            Skin Type	        Limbs
-Amphibian	Wetland	         Carnivore	                         Moist and slimy	  2-4
-Reptile	    Land and water	Carnivore	                         Dry and scaly	     4
-Fish	     Water	         Carnivore or herbivore	             Wet and slimy	     0
-Mammal	    Land	          Carnivore, herbivore, or omnivore 	Fur or hair	      4
-Bird	   Land and air	     Carnivore or herbivore	              Feathers	         2
-Arthropod	Land and water	Carnivore or herbivore	             Exoskeleton	Multiple (usually 6-8)
-*/
