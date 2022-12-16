@@ -53,3 +53,6 @@ such as the move method
 The properties and methods of each class are encapsulated within 
 the class itself, providing a clear separation of responsibilities and a high degree 
 of modularity.
+
+for easy understanding of this code i have attached a sample class diagram 
+<img src="images\Animal.png" width="700" height="400">
