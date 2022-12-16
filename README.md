@@ -11,7 +11,7 @@ Luckily, you are a modern developer who happens to be a student of UL and a stud
 
 You have been presented with the following simple image. Study the image.
 
-<img src="images\Animal-Kingdom-Classification-of-Animal-Kingdom.png" width="200" height="100">
+<img src="images\Animal-Kingdom-Classification-of-Animal-Kingdom.png" width="700" height="400">
 
 
 ## Run Locally
@@ -19,25 +19,18 @@ You have been presented with the following simple image. Study the image.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Theawesomedeveloper/animal-classification.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd animal-classification
 ```
 
-Install dependencies
-
+Run code
 ```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm run start
+node animal.js
 ```
 
 ## Decription
