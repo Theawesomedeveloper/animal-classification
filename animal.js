@@ -1,11 +1,13 @@
+('use strict')
+
 // Abstract base class for animals
-class Animal {
+class Animalia {
   constructor() {
-    if (this.constructor === Animal)
+    if (this.constructor === Animalia)
       throw new Error(`Can't instantiate Abstract Class ${this.constructor}`);
   }
 
-  // Abstract method - must be implemented by derived classes
+  // Abstract methods - must be implemented by derived classes
   move() {
     throw new Error("Method 'move()' must be implemented.");
   }
@@ -15,10 +17,10 @@ class Animal {
 }
 
 // Abstract base class for vertebrates
-class Vertebrate extends Animal {
+class Vertebrate extends Animalia {
   constructor() {
     super();
-    if (this.constructor === Animal)
+    if (this.constructor === Vertebrate)
       throw new Error(`Can't instantiate Abstract Class ${this.constructor}`);
   }
 
@@ -28,10 +30,10 @@ class Vertebrate extends Animal {
 }
 
 // Abstract base class for invertebrates
-class Invertebrate extends Animal {
+class Invertebrate extends Animalia {
   constructor() {
     super();
-    if (this.constructor === Animal)
+    if (this.constructor === Invertebrate)
       throw new Error(`Can't instantiate Abstract Class ${this.constructor}`);
   }
 
@@ -40,8 +42,8 @@ class Invertebrate extends Animal {
   }
 }
 
-// Class for arthropods
-class Arthropod extends Animal {
+/*======================== ATHROPODS CLASS ===================== */
+class Arthropod extends Invertebrate {
   constructor(name, legs) {
     super();
     this.name = name;
@@ -49,70 +51,77 @@ class Arthropod extends Animal {
   }
 
   // this are the general properties of an athropod
-
-
   habitat = "Land and Water";
   diet = "Carnivore or Herbivore";
   skinType = "Exoskeleton";
-  temperature_Regulation=  "Cold Blooded"
+  temperature_Regulation = "Cold Blooded";
 
+  // this an encapsulated method
+  #eat() {
+    console.log(`${this.name} is eating.`);
+  }
+
+  // this calls the encapsulated method
+  feed() {
+    this.#eat();
+  }
+
+
+  // this line of code describes polymorphism as you can see that every animal moves differently
   move() {
     console.log(`${this.name} is crawling.`);
   }
 
-
-  // this line of code describes polymorphism as you can see that every animal moves differently 
-  eat() {
-    console.log(`${this.name} is eating.`);
-  }
-
-  // encapsulated method property is private to each animal group 
+  //another encapsulated method property is private to each animal group
   #property() {
     console.table(this);
   }
 
-  getProperties(){
-    this.#property()
+  getProperties() {
+    this.#property();
   }
 }
 
-// Class for fish
+/*======================== FISH CLASS ===================== */
 class Fish extends Vertebrate {
-  constructor() {
+  constructor(name) {
     super();
+    this.name = name
   }
 
   // this are the general properties of a fish
-  
+
   habitat = "Water";
   diet = "Carnivore or Herbivore	";
   skinType = "Wet and Slimy";
-  limbs = "0: Fishes have fins instead of limbs";
-  temperature_Regulation=  "Cold Blooded"
-
+  hasFins = true;
+  temperature_Regulation = "Cold Blooded";
 
   // this line of code describes polymorphism as you can see that every animal moves differently
   move() {
     console.log(`${this.name} is swimming.`);
   }
 
-
-
-  eat() {
+  // this an encapsulated method
+  #eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  // encapsulated method property is private to each animal group 
+  feed() {
+    this.#eat();
+  }
+
+  // encapsulated method property is private to each animal group
   #property() {
     console.table(this);
   }
 
-  getProperties(){
-    this.#property()
+  getProperties() {
+    this.#property();
   }
 }
 
-// Class for amphibians
+/*======================== AMPHIBIANS CLASS ===================== */
 class Amphibian extends Vertebrate {
   constructor(name) {
     super();
@@ -120,39 +129,44 @@ class Amphibian extends Vertebrate {
   }
 
   // this are the general properties of an amphibian
- 
+
   habitat = "Wetland";
   diet = "Carnivore";
   skinType = "Moist and slimy";
   limbs = "2 - 4";
-  temperature_Regulation=  "Cold Blooded"
+  temperature_Regulation = "Cold Blooded";
 
+  // this line of code describes polymorphism as you can see that every animal moves differently
   move() {
     console.log(`${this.name} is crawling.`);
   }
 
-  // this line of code describes polymorphism as you can see that every animal moves differently
-  eat() {
+  // this an encapsulated method
+
+  #eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  // encapsulated method property is private to each animal group 
+  feed() {
+    this.#eat();
+  }
+
+  // encapsulated method property is private to each animal group
   #property() {
     console.table(this);
   }
 
-  getProperties(){
-    this.#property()
+  getProperties() {
+    this.#property();
   }
 }
 
-// Class for reptiles
+/*======================== REPTILE CLASS ===================== */
 class Reptile extends Vertebrate {
   constructor(name) {
     super();
     this.name = name;
   }
-
 
   // this are the general properties of an reptile
 
@@ -160,25 +174,29 @@ class Reptile extends Vertebrate {
   diet = "Carnivore";
   skinType = "Dry and scaly";
   limbs = "4";
-  temperature_Regulation=  "Cold Blooded"
+  temperature_Regulation = "Cold Blooded";
 
   move() {
     console.log(`${this.name} is slithering.`);
   }
 
-  eat() {
+  // this an encapsulated method
+  #eat() {
     console.log(`${this.name} is eating.`);
   }
+// this calls the primate method eat
+  feed() {
+    this.#eat();
+  }
 
- // encapsulated method property is private to each animal group 
- #property() {
-  console.table(this);
-}
+  // encapsulated method property is private to each animal group
+  #property() {
+    console.table(this);
+  }
 
-getProperties(){
-  this.#property()
-}
-
+  getProperties() {
+    this.#property();
+  }
 }
 
 // Class for mammals
@@ -188,30 +206,34 @@ class Mammal extends Vertebrate {
     this.name = name;
   }
 
-
   // this are the general properties of a mammal
- 
+
   habitat = "Land";
   diet = "Carnivore, Herbivore, Omnivore";
   skinType = "Fur or hair";
   limbs = "4";
-  temperature_Regulation=  "Warm Blooded"
+  temperature_Regulation = "Warm Blooded";
 
   move() {
     console.log(`${this.name} is running.`);
   }
 
-  eat() {
+  // this an encapsulated method
+  #eat() {
     console.log(`${this.name} is eating.`);
   }
 
-  // encapsulated method property is private to each animal group 
+  feed() {
+    this.#eat();
+  }
+
+  // encapsulated method property is private to each animal group
   #property() {
     console.table(this);
   }
 
-  getProperties(){
-    this.#property()
+  getProperties() {
+    this.#property();
   }
 }
 
@@ -223,30 +245,35 @@ class Aves extends Vertebrate {
   }
 
   // this are the general properties of a bird
-  
+
   habitat = "Land and Air";
   diet = "Carnivore or Herbivore";
   skinType = "Feathers";
   limbs = "2";
-
-  temperature_Regulation=  "Warm Blooded"
+  temperature_Regulation = "Warm Blooded";
 
   move() {
     console.log(`${this.name} is flying.`);
   }
 
-  eat() {
+  // this an encapsulated method
+
+  #eat() {
     console.log(`${this.name} is eating.`);
   }
 
-// encapsulated method property is private to each animal group 
+  feed() {
+    this.#eat();
+  }
+
+  // encapsulated method property is private to each animal group
   #property() {
     console.table(this);
   }
 
   // using this metgod to access encapsulated methods
-  getProperties(){
-    this.#property()
+  getProperties() {
+    this.#property();
   }
 }
 
@@ -264,6 +291,33 @@ const eagle = new Aves("Eagle");
 
 const cat = new Mammal("Cat");
 
-console.log(eagle.getProperties());
-console.log(eagle.property()); // this would trow an error as the property is encapsulated
+
+
+// INHERTANCE
+butterfly.reproduce() // inherited from the  INvertebrate Class
+
+eagle.reproduce() // inherited from the Veterbrate class
+
+
+
+// ENCAPSULATION
+
+butterfly.feed() // this calls the eat method which in turn calls the private method eat()
+
+cat.feed() // this calls the eat method which in turn calls the private method eat()
+
+
+// POLYMORPHISM
+
+butterfly.move() // as your can see the method give a different output depending on the animal
+
+tortoise.move() // as your can see the method give a different output depending on the animal
+
+// ABSTRACTION
+
+const goat = new Animalia() // this will throw an error to the console 
+
+
+
+
 
